@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  TelstraiOSAssignment
 //
-//  Created by Saravanakumar Balan01 on 14/07/18.
-//  Copyright © 2018 Saravanakumar Balan01. All rights reserved.
+//  Created by Saravanakumar on 14/07/18.
+//  Copyright © 2018 Saravanakumar. All rights reserved.
 //
 
 import UIKit
@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navigationRootViewContoller = storyboard.instantiateViewController(withIdentifier: "CityAmenitiesListViewController") as? CityAmenitiesListViewController {
+            let windowsRootViewController = UINavigationController(rootViewController: navigationRootViewContoller)
+            self.window?.rootViewController = windowsRootViewController
+        }
         return true
     }
 

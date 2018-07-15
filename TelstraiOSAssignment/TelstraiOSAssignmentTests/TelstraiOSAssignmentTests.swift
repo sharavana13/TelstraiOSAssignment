@@ -2,8 +2,8 @@
 //  TelstraiOSAssignmentTests.swift
 //  TelstraiOSAssignmentTests
 //
-//  Created by Saravanakumar Balan01 on 14/07/18.
-//  Copyright © 2018 Saravanakumar Balan01. All rights reserved.
+//  Created by Saravanakumar on 14/07/18.
+//  Copyright © 2018 Saravanakumar. All rights reserved.
 //
 
 import XCTest
