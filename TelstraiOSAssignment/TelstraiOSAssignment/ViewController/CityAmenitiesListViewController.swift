@@ -48,9 +48,8 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         self.listTableView?.rowHeight = UITableViewAutomaticDimension
         self.listTableView?.translatesAutoresizingMaskIntoConstraints = false
         self.listTableView?.addSubview(self.refreshControl)
-        self.activityIndicator.center = (self.listTableView?.center)!
-        self.listTableView?.addSubview(self.activityIndicator)
         self.view.addSubview(self.listTableView!)
+        self.view.addSubview(self.activityIndicator)
         
         
         self.listTableView?.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0).isActive = true
@@ -58,6 +57,8 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         self.listTableView?.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0).isActive = true
         self.listTableView?.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0).isActive = true
         self.listTableView?.tableFooterView = UIView()
+        
+       activityIndicator.center = self.view.center
         
         self.callAPIservice()
         
@@ -131,20 +132,30 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
     
     //Method to call API
     func callAPIservice()  {
-         DispatchQueue.main.async {
-        self.activityIndicator.startAnimating()
-        }
-        amenitiesPresenter.getAmenities(complete: { (amenitiesValue) in
-            self.amenitiesList = amenitiesValue
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
             DispatchQueue.main.async {
-                self.title = self.amenitiesList?.title
-                self.listTableView?.reloadData()
-                self.activityIndicator.stopAnimating()
+                self.activityIndicator.startAnimating()
             }
-        }) { (error) in
-            print(error.localizedDescription)
-            self.activityIndicator.stopAnimating()
+            amenitiesPresenter.getAmenities(complete: { (amenitiesValue) in
+                self.amenitiesList = amenitiesValue
+                DispatchQueue.main.async {
+                    self.title = self.amenitiesList?.title
+                    self.listTableView?.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            }) { (error) in
+                 DispatchQueue.main.async {
+                print(error.localizedDescription)
+                self.activityIndicator.stopAnimating()
+                    self.showAlert(title: "Service Error", message: "Host not reachable or Error on API service. Please try again later.")
+                }
+            }
+        } else {
+            print("Internet connection FAILED")
+            self.showAlert(title: "No Internet Connection", message: "Make sure your device is connected to the internet.")
         }
+        
     }
     
     
@@ -155,5 +166,19 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         
     }
     
+    func showAlert(title:String, message:String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        if self.presentedViewController == nil {
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            self.dismiss(animated: false, completion: nil)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }
+
 

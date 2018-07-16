@@ -18,6 +18,7 @@
 		5828B2D720F9F2C20064A88C /* AmenitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2D620F9F2C20064A88C /* AmenitiesModel.swift */; };
 		5828B2D920F9F4760064A88C /* APIServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2D820F9F4760064A88C /* APIServiceCall.swift */; };
 		5828B2DB20FB6BBD0064A88C /* AmenitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2DA20FB6BBD0064A88C /* AmenitiesTableViewCell.swift */; };
+		5828B2DE20FC58740064A88C /* Reachablility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2DD20FC58740064A88C /* Reachablility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		5828B2D620F9F2C20064A88C /* AmenitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesModel.swift; sourceTree = "<group>"; };
 		5828B2D820F9F4760064A88C /* APIServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceCall.swift; sourceTree = "<group>"; };
 		5828B2DA20FB6BBD0064A88C /* AmenitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesTableViewCell.swift; sourceTree = "<group>"; };
+		5828B2DD20FC58740064A88C /* Reachablility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachablility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		5828B2A220F9EEB40064A88C /* TelstraiOSAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				5828B2DC20FC584D0064A88C /* Utilities */,
 				5828B2D320F9F0C00064A88C /* Presenter */,
 				5828B2D220F9F03A0064A88C /* ViewController */,
 				5828B2D120F9F0260064A88C /* Model */,
@@ -159,6 +162,14 @@
 				5828B2D820F9F4760064A88C /* APIServiceCall.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5828B2DC20FC584D0064A88C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5828B2DD20FC58740064A88C /* Reachablility.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +311,7 @@
 				5828B2A620F9EEB40064A88C /* CityAmenitiesListViewController.swift in Sources */,
 				5828B2DB20FB6BBD0064A88C /* AmenitiesTableViewCell.swift in Sources */,
 				5828B2A420F9EEB40064A88C /* AppDelegate.swift in Sources */,
+				5828B2DE20FC58740064A88C /* Reachablility.swift in Sources */,
 				5828B2D720F9F2C20064A88C /* AmenitiesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
