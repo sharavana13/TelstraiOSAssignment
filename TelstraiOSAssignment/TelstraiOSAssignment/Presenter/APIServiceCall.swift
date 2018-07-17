@@ -7,13 +7,13 @@
 //
 
 import Foundation
-let QUERY_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+let REQUEST_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 
 class APIServiceCall {
     
     //API service call to get data
     func queryRequest(_ complete: @escaping (_ sucess:Bool, _ facts : AmenitiesList?,_ error : Error?)->()) {
-        let query = "\(QUERY_URL)"
+        let query = "\(REQUEST_URL)"
         print(query)
         URLSession.shared.dataTask(with: URL(string:query)!, completionHandler: { (data, response, error) in
             if let responseData = data {

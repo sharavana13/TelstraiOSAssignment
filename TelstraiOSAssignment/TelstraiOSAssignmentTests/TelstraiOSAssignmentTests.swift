@@ -11,9 +11,17 @@ import XCTest
 
 class TelstraiOSAssignmentTests: XCTestCase {
     
+    var listVC: CityAmenitiesListViewController?
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        listVC = storyboard.instantiateViewController(withIdentifier: "CityAmenitiesListViewController") as? CityAmenitiesListViewController
+        XCTAssertNotNil(listVC, "MasterViewController not initiated properly")
+        
+        listVC?.performSelector(onMainThread: #selector(listVC?.loadView), with: nil, waitUntilDone: true)
+        listVC?.performSelector(onMainThread: #selector(listVC?.viewDidLoad), with: nil, waitUntilDone: true)
     }
     
     override func tearDown() {
@@ -31,6 +39,35 @@ class TelstraiOSAssignmentTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    // MARK: - UITableView Testcases
+    func testThatViewConformsToTableViewDelegate() {
+        XCTAssertTrue(listVC!.conforms(to: UITableViewDelegate.self), "MasterViewController conforms to UITableViewDelegate")
+    }
+    
+    func testThatViewConformsToTableViewDataSources() {
+        XCTAssertTrue(listVC!.conforms(to: UITableViewDataSource.self), "MasterViewController conforms to UITableViewDataSources")
+    }
+    
+    func testThatViewLoads() {
+        XCTAssertNotNil(listVC, "masterViewController View not initiated properly")
+    }
+    
+    
+    func testThatTableViewLoads() {
+        XCTAssertNotNil(listVC?.listTableView, "ListTableView not initiated")
+    }
+    
+    func testAPICall()
+    {
+        XCTAssertNotNil(listVC?.callAPIservice(), "API not initiated")
+    }
+    
+
+    func testPullToRefresh()
+    {
+        XCTAssertNotNil(listVC?.pullToRefreshData((listVC?.refreshControl)!), "Refresh controller not initiated properly")
     }
     
 }

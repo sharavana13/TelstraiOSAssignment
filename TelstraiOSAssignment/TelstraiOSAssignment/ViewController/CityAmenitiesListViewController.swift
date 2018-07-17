@@ -93,10 +93,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
             cell.imgView?.image = nil
             
             let url = URL(string:(value.imageURL))
-            print(url)
-            
-            
-           
+
             var requestSession: URLSessionTask? = nil
             if let imgUrl = url {
                 requestSession = URLSession.shared.dataTask(with: imgUrl, completionHandler: { data, response, error in
