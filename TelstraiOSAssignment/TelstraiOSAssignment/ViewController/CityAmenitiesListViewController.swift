@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -51,11 +52,10 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         self.view.addSubview(self.listTableView!)
         self.view.addSubview(self.activityIndicator)
         
+        self.listTableView?.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
+        }
         
-        self.listTableView?.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0).isActive = true
-        self.listTableView?.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0).isActive = true
-        self.listTableView?.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0).isActive = true
-        self.listTableView?.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0).isActive = true
         self.listTableView?.tableFooterView = UIView()
         
        activityIndicator.center = self.view.center

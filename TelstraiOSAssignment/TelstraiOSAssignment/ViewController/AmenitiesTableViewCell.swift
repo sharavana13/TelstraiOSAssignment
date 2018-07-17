@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 
 class AmenitiesTableViewCell: UITableViewCell {
@@ -28,10 +29,12 @@ class AmenitiesTableViewCell: UITableViewCell {
         self.imgView?.contentMode = .scaleAspectFit
         self.imgView?.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(self.imgView!)
-        self.imgView?.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0).isActive = true
-        self.imgView?.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10.0).isActive = true
-        self.imgView?.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.imgView?.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        self.imgView?.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(self.contentView.snp.centerY)
+            make.left.equalTo(self.contentView.snp.left).offset(10.0)
+            make.size.equalTo(CGSize(width: 50, height: 50))
+        }
+        
        
         
         //Title view for tableview cell
@@ -40,23 +43,27 @@ class AmenitiesTableViewCell: UITableViewCell {
         self.lblTitle?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         self.lblTitle?.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(self.lblTitle!)
-        self.lblTitle?.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0).isActive = true
-        self.lblTitle?.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        self.lblTitle?.leftAnchor.constraint(equalTo: (self.imgView?.rightAnchor)!, constant: 10.0).isActive = true
-        self.lblTitle?.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -5.0).isActive = true
+        self.lblTitle?.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(10.0)
+            make.height.equalTo(22)
+            make.left.equalTo((self.imgView?.snp.right)!).offset(10.0)
+            make.right.equalTo(self.contentView.snp.right).offset(-5.0)
+            make.size.equalTo(CGSize(width: 50, height: 50))
+        }
         
-        
+        //SubTitle view for tableview cell
         self.lblDescription = UILabel()
         self.lblDescription?.text = "Description"
         self.lblDescription?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.lblDescription?.numberOfLines = 0
         self.lblDescription?.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(self.lblDescription!)
-        self.lblDescription?.topAnchor.constraint(equalTo: (self.lblTitle?.bottomAnchor)!, constant: 5.0).isActive = true
-        self.lblDescription?.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -5.0).isActive = true
-        self.lblDescription?.leftAnchor.constraint(equalTo: (self.imgView?.rightAnchor)!, constant: 10.0).isActive = true
-        self.lblDescription?.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -5.0).isActive = true
-        contentView.addSubview(self.lblDescription!)
+        self.lblDescription?.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo((self.lblTitle?.snp.bottom)!).offset(10.0)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-5.0)
+            make.left.equalTo((self.imgView?.snp.right)!).offset(10.0)
+            make.right.equalTo(self.contentView.snp.right).offset(-5.0)
+        }
         
     }
     
