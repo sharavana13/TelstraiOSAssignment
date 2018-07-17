@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -40,6 +41,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         super.viewDidLoad()
         
         self.navigationItem.title = "Title"
+        
         //Add tableViewController programatically
         self.listTableView = UITableView()
         self.listTableView?.register(AmenitiesTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -52,6 +54,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         self.view.addSubview(self.listTableView!)
         self.view.addSubview(self.activityIndicator)
         
+        //Autolayout for tableview using snapkit(Masonry)
         self.listTableView?.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
         }
@@ -87,33 +90,8 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         if let value = amenitiesList?.rows[indexPath.row]
         {
             cell.lblTitle?.text = value.title
-            
             cell.lblDescription?.text = value.description
-            
-            cell.imgView?.image = nil
-            
-            let url = URL(string:(value.imageURL))
-
-            var requestSession: URLSessionTask? = nil
-            if let imgUrl = url {
-                requestSession = URLSession.shared.dataTask(with: imgUrl, completionHandler: { data, response, error in
-                    if data != nil {
-                        var image: UIImage? = nil
-                        if let imgData = data {
-                            image = UIImage(data: imgData)
-                        }
-                        if image != nil {
-                            DispatchQueue.main.async(execute: {
-                                let cellToUpdate = self.listTableView?.cellForRow(at: indexPath as IndexPath) as? AmenitiesTableViewCell
-                                if cellToUpdate != nil {
-                                    cellToUpdate?.imgView?.image = image
-                                }
-                            })
-                        }
-                    }
-                })
-            }
-            requestSession?.resume()
+            cell.imgView?.sd_setImage(with: URL(string: value.imageURL), placeholderImage: #imageLiteral(resourceName: "ImagePlaceholder"), options: SDWebImageOptions.retryFailed, completed: nil)
         }
         cell.selectionStyle = .none
         cell.accessoryType = .none
