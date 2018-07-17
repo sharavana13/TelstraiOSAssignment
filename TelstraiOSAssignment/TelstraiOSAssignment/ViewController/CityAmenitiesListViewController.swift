@@ -35,7 +35,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
-
+    
     //MARK: View delegate methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,17 +61,17 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         
         self.listTableView?.tableFooterView = UIView()
         
-       activityIndicator.center = self.view.center
+        activityIndicator.center = self.view.center
         
         self.callAPIservice()
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     //MARK: UITableView DataSource and Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -91,6 +91,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         {
             cell.lblTitle?.text = value.title
             cell.lblDescription?.text = value.description
+            //SDWebImage to download image from web
             cell.imgView?.sd_setImage(with: URL(string: value.imageURL), placeholderImage: #imageLiteral(resourceName: "ImagePlaceholder"), options: SDWebImageOptions.retryFailed, completed: nil)
         }
         cell.selectionStyle = .none
@@ -120,9 +121,9 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
                     self.activityIndicator.stopAnimating()
                 }
             }) { (error) in
-                 DispatchQueue.main.async {
-                print(error.localizedDescription)
-                self.activityIndicator.stopAnimating()
+                DispatchQueue.main.async {
+                    print(error.localizedDescription)
+                    self.activityIndicator.stopAnimating()
                     self.showAlert(title: "Service Error", message: "Host not reachable or Error on API service. Please try again later.")
                 }
             }

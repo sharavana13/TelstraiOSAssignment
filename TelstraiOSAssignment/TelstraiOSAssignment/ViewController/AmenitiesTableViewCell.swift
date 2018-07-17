@@ -35,7 +35,7 @@ class AmenitiesTableViewCell: UITableViewCell {
             make.size.equalTo(CGSize(width: 50, height: 50))
         }
         
-       
+        
         
         //Title view for tableview cell
         self.lblTitle = UILabel()

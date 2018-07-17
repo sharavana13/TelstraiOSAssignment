@@ -18,23 +18,23 @@ class APIServiceCall {
         URLSession.shared.dataTask(with: URL(string:query)!, completionHandler: { (data, response, error) in
             if let responseData = data {
                 if let value = String(data: responseData, encoding: String.Encoding.ascii) {
-                if let jsonData = value.data(using: String.Encoding.utf8) {
-                    do {
-                        let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>
-                        let amenitiesList = AmenitiesList.init(dict: dictionary!)
-                        print(amenitiesList)
-                        complete(true,amenitiesList,nil)
-                    } catch {
-                        NSLog("ERROR \(error.localizedDescription)")
-                        complete(false,nil,error)
+                    if let jsonData = value.data(using: String.Encoding.utf8) {
+                        do {
+                            let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>
+                            let amenitiesList = AmenitiesList.init(dict: dictionary!)
+                            print(amenitiesList)
+                            complete(true,amenitiesList,nil)
+                        } catch {
+                            NSLog("ERROR \(error.localizedDescription)")
+                            complete(false,nil,error)
+                        }
                     }
                 }
-            }
             }
             else
             {
                 NSLog("ERROR \(String(describing: error?.localizedDescription))")
-                 complete(false,nil,error)
+                complete(false,nil,error)
             }
         }).resume()
     }
