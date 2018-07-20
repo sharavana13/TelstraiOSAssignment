@@ -14,7 +14,7 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
     
     var listTableView : UITableView?
     var amenitiesList : AmenitiesList?
-    var amenitiesPresenter = AmenitiesPresenter()
+    var serviceCall = APIServiceCall()
     
     
     //refresh control to reload data
@@ -40,11 +40,11 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Title"
+        self.navigationItem.title = Constants.NAVIGATION_BAR_TITLE
         
         //Add tableViewController programatically
         self.listTableView = UITableView()
-        self.listTableView?.register(AmenitiesTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.listTableView?.register(AmenitiesTableViewCell.self, forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
         self.listTableView?.delegate = self
         self.listTableView?.dataSource = self
         self.listTableView?.estimatedRowHeight = 44
@@ -60,11 +60,8 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         }
         
         self.listTableView?.tableFooterView = UIView()
-        
         activityIndicator.center = self.view.center
-        
         self.callAPIservice()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,19 +71,17 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
     
     //MARK: UITableView DataSource and Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         guard let value = self.amenitiesList else { return 0 }
         return value.rows.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = self.listTableView?.dequeueReusableCell(withIdentifier: "cell", for:indexPath) as? AmenitiesTableViewCell else { return UITableViewCell() }
+        guard let cell = self.listTableView?.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER, for:indexPath) as? AmenitiesTableViewCell else { return UITableViewCell() }
         if let value = amenitiesList?.rows[indexPath.row]
         {
             cell.lblTitle?.text = value.title
@@ -99,21 +94,19 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+    
     
     
     //MARK: Functions & Methods
     
     //Method to call API
     func callAPIservice()  {
-        if Reachability.isConnectedToNetwork() == true {
+        if (Reachability.isConnectedToNetwork()) {
             print("Internet connection OK")
             DispatchQueue.main.async {
                 self.activityIndicator.startAnimating()
             }
-            amenitiesPresenter.getAmenities(complete: { (amenitiesValue) in
+            serviceCall.getAmenities(complete: { (amenitiesValue) in
                 self.amenitiesList = amenitiesValue
                 DispatchQueue.main.async {
                     self.title = self.amenitiesList?.title
@@ -124,12 +117,12 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
                 DispatchQueue.main.async {
                     print(error.localizedDescription)
                     self.activityIndicator.stopAnimating()
-                    self.showAlert(title: "Service Error", message: "Host not reachable or Error on API service. Please try again later.")
+                    self.showAlert(title: Constants.SERVICE_ERROR, message: Constants.HOST_NOT_REACHABLE)
                 }
             }
         } else {
             print("Internet connection FAILED")
-            self.showAlert(title: "No Internet Connection", message: "Make sure your device is connected to the internet.")
+            self.showAlert(title: Constants.NO_INTERNET_TITLE, message: Constants.NO_INTERNET_MSG)
         }
         
     }
@@ -142,10 +135,9 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         
     }
     
-    func showAlert(title:String, message:String)
-    {
+    func showAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: Constants.OK_BUTTON, style: UIAlertActionStyle.default, handler: nil))
         if self.presentedViewController == nil {
             self.present(alert, animated: true, completion: nil)
         }

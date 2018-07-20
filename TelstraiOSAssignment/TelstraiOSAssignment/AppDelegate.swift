@@ -16,11 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let navigationRootViewContoller = storyboard.instantiateViewController(withIdentifier: "CityAmenitiesListViewController") as? CityAmenitiesListViewController {
-            let windowsRootViewController = UINavigationController(rootViewController: navigationRootViewContoller)
-            self.window?.rootViewController = windowsRootViewController
-        }
+        // Initalise the window
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        
+        // Garantiee the window in not nil
+        guard let window = self.window else { fatalError("no window") }
+        
+        
+        // Set the root view controller of the app's window
+        let windowsRootViewController = UINavigationController(rootViewController: CityAmenitiesListViewController())
+        self.window?.rootViewController = windowsRootViewController
+        
+        
+        // Make the window visible
+        window.makeKeyAndVisible()
+       
         return true
     }
 

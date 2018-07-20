@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		5828B2A420F9EEB40064A88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2A320F9EEB40064A88C /* AppDelegate.swift */; };
 		5828B2A620F9EEB40064A88C /* CityAmenitiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2A520F9EEB40064A88C /* CityAmenitiesListViewController.swift */; };
-		5828B2A920F9EEB40064A88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5828B2A720F9EEB40064A88C /* Main.storyboard */; };
 		5828B2AB20F9EEB40064A88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5828B2AA20F9EEB40064A88C /* Assets.xcassets */; };
 		5828B2AE20F9EEB40064A88C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5828B2AC20F9EEB40064A88C /* LaunchScreen.storyboard */; };
 		5828B2B920F9EEB40064A88C /* TelstraiOSAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2B820F9EEB40064A88C /* TelstraiOSAssignmentTests.swift */; };
 		5828B2C420F9EEB40064A88C /* TelstraiOSAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2C320F9EEB40064A88C /* TelstraiOSAssignmentUITests.swift */; };
-		5828B2D520F9F2690064A88C /* AmenitiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2D420F9F2690064A88C /* AmenitiesPresenter.swift */; };
 		5828B2D720F9F2C20064A88C /* AmenitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2D620F9F2C20064A88C /* AmenitiesModel.swift */; };
 		5828B2D920F9F4760064A88C /* APIServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2D820F9F4760064A88C /* APIServiceCall.swift */; };
 		5828B2DB20FB6BBD0064A88C /* AmenitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2DA20FB6BBD0064A88C /* AmenitiesTableViewCell.swift */; };
 		5828B2DE20FC58740064A88C /* Reachablility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B2DD20FC58740064A88C /* Reachablility.swift */; };
+		589C17AF2101A9890088D7A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589C17AE2101A9890088D7A8 /* Constants.swift */; };
+		589C17B42101B7FE0088D7A8 /* APIServiceCallTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589C17B22101B7FE0088D7A8 /* APIServiceCallTest.swift */; };
 		7FCB2FF431F03708B096E987 /* Pods_TelstraiOSAssignmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3CE6EEE1C04986B379F652 /* Pods_TelstraiOSAssignmentUITests.framework */; };
 		85A732503D3AAE34474B7780 /* Pods_TelstraiOSAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDC6BCCAAC656986A7495CD /* Pods_TelstraiOSAssignment.framework */; };
 		AD7FC6F1195A1BF7FB192AF1 /* Pods_TelstraiOSAssignmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253E8173FB034735D05E8BC4 /* Pods_TelstraiOSAssignmentTests.framework */; };
@@ -48,7 +48,6 @@
 		5828B2A020F9EEB40064A88C /* TelstraiOSAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraiOSAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5828B2A320F9EEB40064A88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5828B2A520F9EEB40064A88C /* CityAmenitiesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAmenitiesListViewController.swift; sourceTree = "<group>"; };
-		5828B2A820F9EEB40064A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5828B2AA20F9EEB40064A88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5828B2AD20F9EEB40064A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5828B2AF20F9EEB40064A88C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,11 +57,12 @@
 		5828B2BF20F9EEB40064A88C /* TelstraiOSAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelstraiOSAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5828B2C320F9EEB40064A88C /* TelstraiOSAssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelstraiOSAssignmentUITests.swift; sourceTree = "<group>"; };
 		5828B2C520F9EEB40064A88C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5828B2D420F9F2690064A88C /* AmenitiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesPresenter.swift; sourceTree = "<group>"; };
 		5828B2D620F9F2C20064A88C /* AmenitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesModel.swift; sourceTree = "<group>"; };
 		5828B2D820F9F4760064A88C /* APIServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceCall.swift; sourceTree = "<group>"; };
 		5828B2DA20FB6BBD0064A88C /* AmenitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesTableViewCell.swift; sourceTree = "<group>"; };
 		5828B2DD20FC58740064A88C /* Reachablility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachablility.swift; sourceTree = "<group>"; };
+		589C17AE2101A9890088D7A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		589C17B22101B7FE0088D7A8 /* APIServiceCallTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceCallTest.swift; sourceTree = "<group>"; };
 		648C509B7930E862288F3757 /* Pods-TelstraiOSAssignmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TelstraiOSAssignmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TelstraiOSAssignmentUITests/Pods-TelstraiOSAssignmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DD1FF27C13ED22515CE94A9 /* Pods-TelstraiOSAssignmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TelstraiOSAssignmentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TelstraiOSAssignmentTests/Pods-TelstraiOSAssignmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		7A3CE6EEE1C04986B379F652 /* Pods_TelstraiOSAssignmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TelstraiOSAssignmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,11 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				5828B2DC20FC584D0064A88C /* Utilities */,
-				5828B2D320F9F0C00064A88C /* Presenter */,
+				5828B2D320F9F0C00064A88C /* Service */,
 				5828B2D220F9F03A0064A88C /* ViewController */,
 				5828B2D120F9F0260064A88C /* Model */,
 				5828B2A320F9EEB40064A88C /* AppDelegate.swift */,
-				5828B2A720F9EEB40064A88C /* Main.storyboard */,
 				5828B2AA20F9EEB40064A88C /* Assets.xcassets */,
 				5828B2AC20F9EEB40064A88C /* LaunchScreen.storyboard */,
 				5828B2AF20F9EEB40064A88C /* Info.plist */,
@@ -152,6 +151,7 @@
 			children = (
 				5828B2B820F9EEB40064A88C /* TelstraiOSAssignmentTests.swift */,
 				5828B2BA20F9EEB40064A88C /* Info.plist */,
+				589C17B22101B7FE0088D7A8 /* APIServiceCallTest.swift */,
 			);
 			path = TelstraiOSAssignmentTests;
 			sourceTree = "<group>";
@@ -182,19 +182,19 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		5828B2D320F9F0C00064A88C /* Presenter */ = {
+		5828B2D320F9F0C00064A88C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				5828B2D420F9F2690064A88C /* AmenitiesPresenter.swift */,
 				5828B2D820F9F4760064A88C /* APIServiceCall.swift */,
 			);
-			path = Presenter;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		5828B2DC20FC584D0064A88C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				5828B2DD20FC58740064A88C /* Reachablility.swift */,
+				589C17AE2101A9890088D7A8 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -325,7 +325,6 @@
 			files = (
 				5828B2AE20F9EEB40064A88C /* LaunchScreen.storyboard in Resources */,
 				5828B2AB20F9EEB40064A88C /* Assets.xcassets in Resources */,
-				5828B2A920F9EEB40064A88C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,9 +426,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5828B2D520F9F2690064A88C /* AmenitiesPresenter.swift in Sources */,
 				5828B2D920F9F4760064A88C /* APIServiceCall.swift in Sources */,
 				5828B2A620F9EEB40064A88C /* CityAmenitiesListViewController.swift in Sources */,
+				589C17AF2101A9890088D7A8 /* Constants.swift in Sources */,
 				5828B2DB20FB6BBD0064A88C /* AmenitiesTableViewCell.swift in Sources */,
 				5828B2A420F9EEB40064A88C /* AppDelegate.swift in Sources */,
 				5828B2DE20FC58740064A88C /* Reachablility.swift in Sources */,
@@ -441,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				589C17B42101B7FE0088D7A8 /* APIServiceCallTest.swift in Sources */,
 				5828B2B920F9EEB40064A88C /* TelstraiOSAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,14 +469,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5828B2A720F9EEB40064A88C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5828B2A820F9EEB40064A88C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5828B2AC20F9EEB40064A88C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

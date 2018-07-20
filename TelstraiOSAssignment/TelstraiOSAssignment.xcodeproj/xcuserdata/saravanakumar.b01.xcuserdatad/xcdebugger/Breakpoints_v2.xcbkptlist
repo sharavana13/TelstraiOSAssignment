@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TelstraiOSAssignment/Presenter/APIServiceCall.swift"
-            timestampString = "553428192.516848"
+            timestampString = "553757300.4510339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "queryRequest(_:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getAmenities(complete:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

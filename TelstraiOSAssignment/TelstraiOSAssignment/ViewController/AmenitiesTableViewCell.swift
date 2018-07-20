@@ -23,7 +23,11 @@ class AmenitiesTableViewCell: UITableViewCell {
     // Initialization methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+       self.loadSubViews()
         
+    }
+    
+    func loadSubViews() {
         //Image view for tableview cell
         self.imgView = UIImageView()
         self.imgView?.contentMode = .scaleAspectFit
@@ -39,7 +43,7 @@ class AmenitiesTableViewCell: UITableViewCell {
         
         //Title view for tableview cell
         self.lblTitle = UILabel()
-        self.lblTitle?.text = "Title"
+        self.lblTitle?.text = ""
         self.lblTitle?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         self.lblTitle?.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(self.lblTitle!)
@@ -53,7 +57,7 @@ class AmenitiesTableViewCell: UITableViewCell {
         
         //SubTitle view for tableview cell
         self.lblDescription = UILabel()
-        self.lblDescription?.text = "Description"
+        self.lblDescription?.text = ""
         self.lblDescription?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.lblDescription?.numberOfLines = 0
         self.lblDescription?.translatesAutoresizingMaskIntoConstraints = false
@@ -64,22 +68,13 @@ class AmenitiesTableViewCell: UITableViewCell {
             make.left.equalTo((self.imgView?.snp.right)!).offset(10.0)
             make.right.equalTo(self.contentView.snp.right).offset(-5.0)
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        //self.imgView?.image = nil
-    }
     
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
+    
 }
