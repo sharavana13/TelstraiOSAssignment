@@ -9,8 +9,7 @@
 import Foundation
 
 //Aminitie detail structure
-struct Amenities
-{
+struct Amenities{
     var title : String
     var description : String
     var imageURL : String

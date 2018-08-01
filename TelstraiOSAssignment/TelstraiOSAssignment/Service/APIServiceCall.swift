@@ -13,12 +13,10 @@ class APIServiceCall {
     
     func getAmenities(complete : @escaping (AmenitiesList)->(), error : @escaping (Error)->()) {
         self.queryRequest { (isComplete, aminitiesList, errors) in
-            if let err = errors
-            {
+            if let err = errors{
                 error(err) //Fails
             }
-            if let aminitie = aminitiesList
-            {
+            if let aminitie = aminitiesList{
                 complete(aminitie) //Success
             }
         }
@@ -44,8 +42,7 @@ class APIServiceCall {
                     }
                 }
             }
-            else
-            {
+            else{
                 NSLog("ERROR \(String(describing: error?.localizedDescription))")
                 complete(false,nil,error)
             }

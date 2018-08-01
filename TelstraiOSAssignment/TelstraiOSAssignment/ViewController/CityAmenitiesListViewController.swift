@@ -12,10 +12,21 @@ import SDWebImage
 
 class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var listTableView : UITableView?
+    
     var amenitiesList : AmenitiesList?
     var serviceCall = APIServiceCall()
     
+    //TableviewController initialization
+    lazy var listTableView : UITableView = {
+        let listTableView = UITableView()
+        listTableView.delegate = self
+        listTableView.dataSource = self
+        listTableView.estimatedRowHeight = 44
+        listTableView.rowHeight = UITableViewAutomaticDimension
+        listTableView.translatesAutoresizingMaskIntoConstraints = false
+        listTableView.tableFooterView = UIView()
+        return listTableView
+    }()
     
     //refresh control to reload data
     lazy var refreshControl: UIRefreshControl = {
@@ -41,32 +52,29 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
         super.viewDidLoad()
         
         self.navigationItem.title = Constants.NAVIGATION_BAR_TITLE
-        
-        //Add tableViewController programatically
-        self.listTableView = UITableView()
-        self.listTableView?.register(AmenitiesTableViewCell.self, forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
-        self.listTableView?.delegate = self
-        self.listTableView?.dataSource = self
-        self.listTableView?.estimatedRowHeight = 44
-        self.listTableView?.rowHeight = UITableViewAutomaticDimension
-        self.listTableView?.translatesAutoresizingMaskIntoConstraints = false
-        self.listTableView?.addSubview(self.refreshControl)
-        self.view.addSubview(self.listTableView!)
-        self.view.addSubview(self.activityIndicator)
-        
-        //Autolayout for tableview using snapkit(Masonry)
-        self.listTableView?.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
-        }
-        
-        self.listTableView?.tableFooterView = UIView()
-        activityIndicator.center = self.view.center
+        self.addViews()
         self.callAPIservice()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Add views for view controller
+    func addViews(){
+        //Add tableViewController to view
+        self.listTableView.register(AmenitiesTableViewCell.self, forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
+        self.listTableView.addSubview(self.refreshControl)
+        self.view.addSubview(self.listTableView)
+        self.view.addSubview(self.activityIndicator)
+        
+        //Set Autolayout for tableview using snapkit(Masonry)
+        self.listTableView.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
+        }
+        
+        activityIndicator.center = self.view.center
     }
     
     //MARK: UITableView DataSource and Delegate
@@ -81,13 +89,12 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = self.listTableView?.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER, for:indexPath) as? AmenitiesTableViewCell else { return UITableViewCell() }
+        guard let cell = self.listTableView.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER, for:indexPath) as? AmenitiesTableViewCell else { return UITableViewCell() }
         if let value = amenitiesList?.rows[indexPath.row]
         {
-            cell.lblTitle?.text = value.title
-            cell.lblDescription?.text = value.description
-            //SDWebImage to download image from web
-            cell.imgView?.sd_setImage(with: URL(string: value.imageURL), placeholderImage: #imageLiteral(resourceName: "ImagePlaceholder"), options: SDWebImageOptions.retryFailed, completed: nil)
+            cell.lblTitle.text = value.title
+            cell.lblDescription.text = value.description
+            cell.imgView.sd_setImage(with: URL(string: value.imageURL), placeholderImage: #imageLiteral(resourceName: "ImagePlaceholder"), options: SDWebImageOptions.retryFailed, completed: nil)  //SDWebImage to download image from web
         }
         cell.selectionStyle = .none
         cell.accessoryType = .none
@@ -109,8 +116,10 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
             serviceCall.getAmenities(complete: { (amenitiesValue) in
                 self.amenitiesList = amenitiesValue
                 DispatchQueue.main.async {
-                    self.title = self.amenitiesList?.title
-                    self.listTableView?.reloadData()
+                    if let navigationBarTitle = self.amenitiesList?.title {
+                        self.title = navigationBarTitle
+                    }
+                    self.listTableView.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
             }) { (error) in
@@ -118,6 +127,9 @@ class CityAmenitiesListViewController: UIViewController, UITableViewDelegate, UI
                     print(error.localizedDescription)
                     self.activityIndicator.stopAnimating()
                     self.showAlert(title: Constants.SERVICE_ERROR, message: Constants.HOST_NOT_REACHABLE)
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
                 }
             }
         } else {

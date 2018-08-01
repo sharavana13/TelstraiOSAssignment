@@ -40,20 +40,11 @@ class TelstraiOSAssignmentTests: XCTestCase {
         XCTAssertTrue(listVC!.conforms(to: UITableViewDataSource.self), "MasterViewController conforms to UITableViewDataSources")
     }
     
-    func testThatViewLoads() {
-        XCTAssertNotNil(listVC, "masterViewController View not initiated properly")
-    }
-    
-    
-    func testThatTableViewLoads() {
-        XCTAssertNotNil(listVC?.listTableView, "ListTableView not initiated")
-    }
-    
 
-    func testPullToRefresh()
-    {
+    func testPullToRefresh(){
         XCTAssertNotNil(listVC?.pullToRefreshData((listVC?.refreshControl)!), "Refresh controller not initiated properly")
     }
     
+   
     
 }
